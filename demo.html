@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Function</title>
+</head>
+<body>
+<script>
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+    let number2 = [19, 20, 21, 22];
+    let number3 = [9, 10, 11, 12];
+    let number4 = [100, 220, 211, 212];
+
+    function findMax(tenMang) {//Tham số
+        let max = tenMang[0];
+        for (let i = 0; i < tenMang.length; i++) {
+            if (tenMang[i] > max) {
+                max = tenMang[i];
+            }
+        }
+        document.write(max);
+        document.write(tenMang)
+    }
+    //
+    // document.write(tenMang)
+    //
+    // findMax([1,2,3]); //Đối số
+    // document.write('<br>');
+    // findMax(number2);
+    // document.write('<br>');
+    // findMax(number3);
+    // document.write('<br>');
+    // findMax(number4);
+
+    // function hienThiTen(name) { //name là tham số
+    //     alert(name);
+    // }
+    //
+    // hienThiTen('Quân'); //'Quân' là đối số
+    //
+    //
+    // function timGiaTriTB(mangSo) { //mangSo là tham số
+    //     let tb = mangSo/mangSo.length;
+    // }
+    //
+    // timGiaTriTB([1,2,3,6]); //[1,2,3,6] là đối số
+
+    // function hienThiTen(name = 'Quân') {
+    //     alert(name)
+    // }
+    //
+    //
+
+    //Đây là hàm thủ tục
+    /*function hienThiSoNguyen(number = 3) {
+        alert(number);
+    }
+
+    //Đây là hàm số học
+    function layBinhPhuong(number = 3) {
+        return number*number;//Kết thúc hàm.
+        alert('11111') // không có kết quả.
+    }
+
+    document.write(layBinhPhuong());
+    console.log(layBinhPhuong());
+    alert(layBinhPhuong()); */
+
+    // hienThiSoNguyen(6);
+    // let binhPhuong = layBinhPhuong(5); //<=> 25
+    // alert(6 + layBinhPhuong(5)) // <=> 31
+    function func1(a=6) {  //không hiểu.
+        if (a == 2)
+            return 2;
+        return a * func1(a - 1);
+    }
+    document.write (func1());
+
+</script>
+</body>
+</html>
