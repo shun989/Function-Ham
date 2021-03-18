@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ProcessConfirm</title>
+</head>
+<body>
+<script>
+    function processConfirm(answer) {
+        let number = prompt("").value;
+        let result= number;
+        if (answer){
+        result = "Excellent. We'll play a nice game of chess.";
+    } else {
+        result = "Maybe later then.";
+    }
+    return result;
+    }
+    alert(processConfirm());
+    document.write(processConfirm(3));
+</script>
+</body>
+</html>
