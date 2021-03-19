@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra số nguyên tố</title>
+</head>
+<body>
+<input type="number" id="num" oninput="isPrime()" placeholder="Number">
+<p>Kết quả: <span id="ketqua"></span></p>
+<script>
+    function isPrime(){
+        let N = document.getElementById('num').value;
+        for (let i = 2; i < N; i++) {
+            if (N % i === 0 ){
+            document.getElementById('ketqua').innerHTML = N +  ' Không phải số nguyên tố';
+            break;
+            }
+        else{
+            document.getElementById('ketqua').innerHTML = N + ' là số nguyên tố';
+          }
+        }
+    }
+</script>
+
+</body>
+</html>
