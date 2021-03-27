@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop hoa quả</title>
+</head>
+<style>
+    img{
+        height: 100px;
+    }
+    table{
+        width: 50%;
+        float: left;
+    }
+    td{
+        font-size: 25px;
+    }
+
+</style>
+<body>
+<button onclick="addFruit()" style="background-color: greenyellow; font-size: 20px">Thêm hoa quả</button>
+<button onclick="payOrder()" style="background-color: red; font-size: 25px">Thanh toán</button>
+<table border="1px" id="menu"></table>
+<table border="1px" id="order"></table>
+<strong style="font-size: 20px; color: blue">Tổng thu:</strong><span id="revenue" style="color: red; font-size: 20px">0</span> &nbspVNĐ.
+<script>
+    let fruit1 = ['Chuối', "anhhoaqua/chuoi.jpg", '1kg', 10000];
+    let fruit2 = ['Dưa hấu', "anhhoaqua/duahau.jpg", '1kg', 15000];
+    let fruit3 = ['Lê', "anhhoaqua/le.jpg", '1kg', 25000];
+    let fruit4 = ['Nhãn', "anhhoaqua/nhan.jpg", '1kg', 30000];
+    let fruit5 = ['Nho đen', "anhhoaqua/nhoden.jpg", '1kg', 50000];
+    let fruit6 = ['Nho đỏ', "anhhoaqua/nhodo.jpg", '1kg', 40000];
+    let fruit7 = ['Táo', "anhhoaqua/tao.jpg", '1kg', 20000];
+    let fruit8 = ['Vải thiều', "anhhoaqua/vai.jpg", '1kg', 45000];
+
+    let revenue = 0;
+    let menu = [fruit1, fruit2, fruit3, fruit4, fruit5, fruit6, fruit7, fruit8];
+    let order = [];
+//1 tạo khung gian hàng.
+
+    function showMenu() {
+        let menuTxt = '';
+        for (let i = 0; i < menu.length; i++) {
+            menuTxt += '<tr>';
+            menuTxt += '<td style="color: blue; background-color: lime" >' + menu[i][0] + '</td>';
+            menuTxt += '<td><img src="'+ menu[i][1] +'" alt="image"></td>';
+            menuTxt += '<td style="background-color: yellow">' + menu[i][2] + '</td>';
+            menuTxt += '<td style="color: red; background-color: wheat">' + menu[i][3] + '</td>';
+            menuTxt += '<td style="background-color: darkgray"><button onclick="updateFruit('+i+')">Sửa</button> </td>';
+            menuTxt += '<td style="background-color: darkgrey"><button onclick="deleteFruit('+i+')">Xoá</button> </td>';
+            menuTxt += '<td style="background-color: darkgrey"><button onclick="orderFruit('+i+')">Chọn</button> </td>';
+            menuTxt += '</tr>'
+        }
+        document.getElementById('menu').innerHTML = menuTxt;
+    }
+    showMenu();
+//2 thêm hàng vào order.
+    function orderFruit(index) {
+        let addOrder = menu[index];
+        order.push(addOrder);
+        showOrder();
+    }
+//3 tạo khung hàng order.
+    function showOrder() {
+        let orderTxt = '';
+        for (let i = 0; i < order.length; i++) {
+            orderTxt += '<tr>';
+            orderTxt += '<td style="color: blue; background-color: lime">' + order[i][0] + '</td>';
+            orderTxt += '<td><img src="'+ order[i][1] +'" alt="image"></td>';
+            orderTxt += '<td style="background-color: yellow">' + order[i][2] + '</td>';
+            orderTxt += '<td style="color: red; background-color: wheat">' + order[i][3] + '</td>';
+            orderTxt += '<td style="background-color: darkgrey"><button onclick="deleteFruitOfOrder('+i+')">Bỏ chọn</button></td>';
+            orderTxt += '</tr>'
+        }
+        orderTxt += '<tr style="background-color: red; color: yellow">' +
+                        '<td>Tổng tiền</td>' +
+                        '<td>'+totalAmount()+'</td>' +
+                     '</tr>'
+        document.getElementById('order').innerHTML = orderTxt;
+    }
+//4 hàm tính tiền.
+    function totalAmount() {
+        let total = 0;
+        for (let i = 0; i < order.length; i++) {
+            total += parseInt(order[i][3]);
+        }
+        return total;
+    }
+//5 hàm xoá hàng khỏi order.
+    function deleteFruitOfOrder(index) {
+        order.splice(index,1);
+        showOrder();
+    }
+//6 hàm thanh toán.
+    function payOrder() {
+        revenue += totalAmount();
+        document.getElementById('revenue').innerHTML = revenue;
+        alert("Bạn đã thanh toán thành công!");
+        order = [];
+        showOrder();
+    }
+//7 hàm thêm hàng vào gian hàng.
+    function addFruit() {
+        let name = prompt('Tên hoa quả');
+        let img = prompt('Ảnh hoa quả');
+        let mass = prompt('khối lượng');
+        let price = prompt('Giá hoa quả');
+        let fruit = [name,img,mass,price];
+        menu.push(fruit);
+        console.log(menu);
+        showMenu();
+    }
+//8 xoá hàng khỏi gian hàng.
+    function deleteFruit(index) {
+        menu.splice(index,1);
+        showMenu();
+    }
+//9 cập nhật hàng vào gian hàng.
+    function updateFruit(index) {
+        menu[index][0] = prompt("Nhập tên mới", menu[index][0])
+        menu[index][1] = prompt("Nhập ảnh mới", menu[index][1])
+        menu[index][2] = +prompt("Nhập khối lượng", menu[index][2])
+        menu[index][3] = +prompt("Nhập giá mới", menu[index][3])
+        showMenu();
+    }
+</script>
+</body>
+</html>
